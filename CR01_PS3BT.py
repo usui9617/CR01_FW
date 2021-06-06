@@ -47,13 +47,13 @@ void setup() {
   servo_write(3, 90);
   servo_write(4, 87);
   servo_write(5, 100);
-  
-  
+  servo_write(6, 90);
+  servo_write(7, 90);
 
   delay(1000);
 }
 void loop() {
-  int yaw,pichR,pichL,mabuR,mabuL ;
+  int yaw,pichR,pichL,mabuR,mabuL,x,y ;
   Usb.Task();
 //   servo_write(2, 78); //137
 //   servo_write(5, 115);//52
@@ -76,6 +76,10 @@ void loop() {
         Serial.print(PS3.getAnalogHat(RightHatX));
         Serial.print(F("\tRightHatY: "));
         Serial.print(PS3.getAnalogHat(RightHatY));
+          y = map(PS3.getAnalogHat(RightHatX), 0, 255, -10, 15);
+          x = map(PS3.getAnalogHat(RightHatY), 0, 255, -10, 15);
+        servo_write(6, (90-x+y));
+        servo_write(7, (90+x+y));
       }
    // }
 
